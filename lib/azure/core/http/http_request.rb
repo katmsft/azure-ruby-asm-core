@@ -159,7 +159,7 @@ module Azure
         def apply_body_headers
           return headers['Content-Length'] = '0' unless body
 
-          return apply_io_headers        if IO === body
+          return apply_io_headers        if IO === body || Tempfile === body
           return apply_string_io_headers if StringIO === body
           return apply_miscellaneous_headers
         end
